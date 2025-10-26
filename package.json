@@ -1,0 +1,15 @@
+{
+  "name": "cloud-portfolio",
+  "version": "1.0.0",
+  "description": "Simple portfolio app used for automated DevOps pipeline demo",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "author": "ShaunSunny",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

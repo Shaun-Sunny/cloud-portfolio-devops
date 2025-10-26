@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Cloud Portfolio</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <style>
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; padding: 2rem; background:#f7fafc;}
+    .card { background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 6px 18px rgba(0,0,0,0.06); max-width: 720px; margin: auto;}
+    h1 { margin-top: 0; }
+    ul { margin-left: 1.2rem; }
+    .muted { color: #4a5568; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Shaun's Cloud Portfolio</h1>
+    <p class="muted">Automatically deployed with a CI/CD pipeline to Azure AKS (demo app).</p>
+    <h3>Projects (from <code>/api/projects</code>)</h3>
+    <ul id="projects"></ul>
+  </div>
+
+  <script>
+    fetch('/api/projects')
+      .then(r => r.json())
+      .then(list => {
+        const ul = document.getElementById('projects');
+        list.forEach(p => {
+          const li = document.createElement('li');
+          li.textContent = `${p.name} — ${p.tech}`;
+          ul.appendChild(li);
+        });
+      })
+      .catch(err => {
+        const ul = document.getElementById('projects');
+        ul.innerHTML = '<li>Error loading projects</li>';
+        console.error(err);
+      });
+  </script>
+</body>
+</html>

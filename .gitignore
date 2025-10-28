@@ -11,3 +11,5 @@ terraform.tfstate.backup
 node_modules/
 *.log
 .env
+terraform.tfstate
+terraform.tfstate.backup

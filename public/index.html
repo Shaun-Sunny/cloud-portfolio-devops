@@ -3,23 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LeBron James: The King</title>
-    
+    <title>The Cosmos</title>
+
     <style>
         /* Global Styles & Resets */
         :root {
-            --lakers-purple: #552583;
-            --lakers-gold: #FDB927;
-            --heat-red: #98002E;
-            --heat-black: #000000;
-            --cavs-wine: #6F263D;
-            --cavs-gold: #FDBB30;
-
-            --dark-bg: #121212;
-            --primary-text: #f0f0f0;
-            --secondary-text: #aaaaaa;
-            --card-bg: #1e1e1e;
-            --border-radius: 12px;
+            --deep-space: #0b0f19;
+            --light-nebula: #a4508b;
+            --bright-star: #00d4ff;
+            --primary-text: #e0e0e0;
+            --secondary-text: #a0a0a0;
+            --card-bg: #151a2e;
+            --border-radius: 10px;
         }
 
         * {
@@ -33,15 +28,16 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--dark-bg);
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: var(--deep-space);
             color: var(--primary-text);
-            line-height: 1.6;
+            line-height: 1.7;
+            background-image: radial-gradient(circle, #1a2035, var(--deep-space) 70%);
         }
 
         /* Page Container */
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -49,66 +45,46 @@
         /* Header */
         header {
             text-align: center;
-            padding: 40px 20px;
-            margin-bottom: 30px;
+            padding: 50px 20px;
+            margin-bottom: 40px;
+            
+            /* Hero Image directly in CSS */
+            background-image: linear-gradient(rgba(11, 15, 25, 0.8), rgba(11, 15, 25, 1)), url('https://source.unsplash.com/1600x900/?galaxy');
+            background-size: cover;
+            background-position: center;
             border-radius: var(--border-radius);
-            
-            /* Default Lakers Theme */
-            background-color: var(--lakers-purple);
-            color: var(--lakers-gold);
-            
-            border: 2px solid var(--lakers-gold);
-            transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
             
             /* Animation */
             opacity: 0;
-            transform: translateY(-30px);
-            animation: fadeInDown 1s ease-out forwards;
+            transform: translateY(-20px);
+            animation: fadeInDown 1.2s ease-out forwards;
         }
 
         header h1 {
-            font-size: 3.5rem;
-            font-weight: 900;
-            text-transform: uppercase;
+            font-size: 4rem;
+            font-weight: 800;
             letter-spacing: 2px;
-            margin-bottom: 5px;
+            background: linear-gradient(45deg, var(--bright-star), var(--light-nebula));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
         }
 
         header p {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
+            color: var(--secondary-text);
             font-style: italic;
         }
 
-        /* Theme Switcher Button */
-        #themeButton {
-            display: block;
-            margin: 20px auto;
-            padding: 12px 25px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            border: none;
-            border-radius: 8px;
-
-            /* Default Lakers Theme */
-            background-color: var(--lakers-gold);
-            color: var(--lakers-purple);
-            
-            transition: background-color 0.4s ease, color 0.4s ease, transform 0.2s ease;
-        }
-
-        #themeButton:hover {
-            transform: scale(1.05);
-        }
-
-        /* Main Content Sections */
+        /* Content Sections */
         .content-section {
             background-color: var(--card-bg);
             padding: 30px;
             margin-bottom: 30px;
             border-radius: var(--border-radius);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            border: 1px solid #2a314b;
+            
             /* Animation */
             opacity: 0;
             transform: translateY(30px);
@@ -116,110 +92,73 @@
         }
 
         /* Staggered animation delays */
-        #hero { animation-delay: 0.2s; }
-        #stats { animation-delay: 0.4s; }
-        #gallery { animation-delay: 0.6s; }
-        #quote { animation-delay: 0.8s; }
+        #intro { animation-delay: 0.2s; }
+        #gallery { animation-delay: 0.4s; }
+        #quote { animation-delay: 0.6s; }
 
 
         .content-section h2 {
             font-size: 2.5rem;
             margin-bottom: 20px;
-            border-bottom: 3px solid var(--lakers-gold);
+            border-bottom: 3px solid var(--bright-star);
             padding-bottom: 10px;
-            /* JS will target this border color */
-            transition: border-color 0.4s ease;
+            color: #fff;
         }
 
-        /* Hero Image */
-        .hero-image {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            object-position: center 20%;
-            border-radius: var(--border-radius);
-            margin-bottom: 20px;
-        }
-
-        #bio p {
+        #intro p {
             font-size: 1.1rem;
             margin-bottom: 15px;
         }
-
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .stat-item {
-            background-color: #2a2a2a;
-            padding: 25px;
-            border-radius: 10px;
-            text-align: center;
-            border-left: 5px solid var(--lakers-gold);
-            /* JS will target this border color */
-            transition: border-color 0.4s ease, transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--lakers-gold);
-             /* JS will target this color */
-            transition: color 0.4s ease;
-        }
-
-        .stat-item p {
-            font-size: 1rem;
-            color: var(--secondary-text);
-        }
-
+        
         /* Gallery Grid */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
         }
 
-        .gallery-grid img {
+        .gallery-item {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+        
+        .gallery-item img {
             width: 100%;
             height: 250px;
             object-fit: cover;
-            border-radius: 10px;
-            border: 3px solid transparent;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .gallery-grid img:hover {
-            transform: scale(1.05);
-            border-color: var(--lakers-gold);
-            /* JS will target this border color */
+            display: block;
+            transition: opacity 0.3s ease;
         }
         
+        .gallery-item:hover img {
+            opacity: 0.85;
+        }
+
         /* Quote */
         blockquote {
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             font-style: italic;
             font-weight: 300;
             text-align: center;
-            padding: 20px;
-            border-left: 5px solid var(--lakers-gold);
-            /* JS will target this border color */
-            background-color: #2a2a2a;
+            padding: 30px;
+            border-left: 5px solid var(--light-nebula);
+            background-color: #0b0f19;
             border-radius: 0 var(--border-radius) var(--border-radius) 0;
             margin: 20px 0;
-            transition: border-color 0.4s ease;
         }
 
         blockquote cite {
             display: block;
-            margin-top: 10px;
+            margin-top: 15px;
             font-size: 1rem;
             font-style: normal;
             font-weight: 600;
@@ -234,41 +173,76 @@
             color: var(--secondary-text);
             font-size: 0.9rem;
         }
+        
+        /* * Modal (Lightbox) for Gallery
+         * This is hidden by default 
+        */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+            
+            /* For centering the image */
+            justify-content: center;
+            align-items: center;
+            
+            /* JS will toggle this class */
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        /* This class is added by JS */
+        .modal.visible {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            animation: zoomIn 0.3s ease;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .modal-close:hover,
+        .modal-close:focus {
+            color: #bbb;
+            text-decoration: none;
+        }
+
 
         /* Keyframe Animations */
         @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.5rem;
-            }
-            .gallery-grid {
-                grid-template-columns: 1fr; /* Stack gallery images */
-            }
-            .hero-image {
-                height: 300px;
-            }
+        
+        @keyframes zoomIn {
+            from { transform: scale(0.8); }
+            to { transform: scale(1); }
         }
 
     </style>
@@ -277,150 +251,103 @@
 
     <div class="container">
 
-        <header id="pageHeader">
-            <h1>LeBron James</h1>
-            <p>"The King"</p>
+        <header>
+            <h1>The Cosmos</h1>
+            <p>A journey into the final frontier</p>
         </header>
 
-        <button id="themeButton">Switch Team Theme (Lakers)</button>
+        <main>
+            <section id="intro" class="content-section">
+                <h2>🌌 Welcome, Stargazer</h2>
+                <p>The universe is a vast, unending expanse of space and time, containing everything that has ever existed, does exist, and ever will exist. From the tiniest subatomic particles to the largest galactic superclusters, it is a place of breathtaking beauty and profound mystery.</p>
+                <p>This page is a small tribute to the wonders of our cosmos, from the colorful nebulae where stars are born to the enigmatic black holes that warp the fabric of reality itself.</p>
+            </section>
 
-        <section id="hero" class="content-section">
-            <img src="https://images.performgroup.com/di/library/NBA_Global_CMS_image_storage/63/83/lebron-james-lakers-cropped_1pwwf09vu5ex5181s22g01ghik.jpg?t=-961502444&w=1200" alt="LeBron James playing for the Lakers" class="hero-image">
-            <div id="bio">
-                <h2>👑 The King's Journey</h2>
-                <p>LeBron Raymone James Sr. is an American professional basketball player for the Los Angeles Lakers. Widely regarded as one of the greatest players in NBA history, he is the **all-time leading scorer in NBA history** and ranks fourth in career assists. </p>
-                <p>He has won four NBA championships (two with the Miami Heat, one with the Cleveland Cavaliers, and one with the Lakers), four NBA MVP awards, and four NBA Finals MVP awards. His career is a testament to longevity, excellence, and sustained dominance.</p>
-            </div>
-        </section>
+            <section id="gallery" class="content-section">
+                <h2>Stellar Gallery</h2>
+                <p style="color: var(--secondary-text); margin-bottom: 20px;">Click any image to enlarge. (Note: These are random, live images from Unsplash. Refresh the page to see new ones!)</p>
+                
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="https://source.unsplash.com/800x600/?nebula" alt="A colorful nebula" class="gallery-image">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://source.unsplash.com/800x600/?planet" alt="A distant planet" class="gallery-image">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://source.unsplash.com/800x600/?stars,sky" alt="A starry sky" class="gallery-image">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://source.unsplash.com/800x600/?supernova" alt="A supernova explosion" class="gallery-image">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://source.unsplash.com/800x600/?earth,space" alt="Earth from space" class="gallery-image">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://source.unsplash.com/800x600/?aurora" alt="An aurora" class="gallery-image">
+                    </div>
+                </div>
+            </section>
 
-        <section id="stats" class="content-section">
-            <h2>By the Numbers</h2>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <h3 class="stat-number">4x</h3>
-                    <p>NBA Champion</p>
-                </div>
-                <div class="stat-item">
-                    <h3 class="stat-number">4x</h3>
-                    <p>NBA MVP</p>
-                </div>
-                <div class="stat-item">
-                    <h3 class="stat-number">1st</h3>
-                    <p>All-Time Scoring Leader</p>
-                </div>
-                <div class="stat-item">
-                    <h3 class="stat-number">20x</h3>
-                    <p>NBA All-Star</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="gallery" class="content-section">
-            <h2>Career Gallery</h2>
-            <div class="gallery-grid">
-                <img src="https://media.npr.org/assets/img/2016/06/20/gettyimages-541514788_wide-c6f393963162ca53196c14e1ebb6891008630656.jpg" alt="LeBron James Cavaliers championship">
-                <img src="https://media.cnn.com/api/v1/images/stellar/prod/140711181213-02-lebron-james-heat.jpg?q=x_2,y_148,h_1686,w_2997,c_crop/h_720,w_1280" alt="LeBron James with the Miami Heat">
-                <img src="https://cdn.nba.com/teams/images/2023/02/08/1675836261-lebron-james-karrem-abdul-jabbar-1920.jpg" alt="LeBron James breaking the scoring record">
-            </div>
-        </section>
-
-        <section id="quote" class="content-section">
-            <h2>King's Words</h2>
-            <blockquote>
-                "I'm just a kid from Akron, Ohio."
-                <cite>– LeBron James</cite>
-            </blockquote>
-        </section>
+            <section id="quote" class="content-section">
+                <h2>Words of Wonder</h2>
+                <blockquote>
+                    "The cosmos is within us. We are made of star-stuff. We are a way for the universe to know itself."
+                    <cite>– Carl Sagan</cite>
+                </blockquote>
+            </section>
+        </main>
 
         <footer>
-            <p>Single-file HTML demo by Gemini</p>
+            <p>Single-file HTML demo by Gemini using working Unsplash URLs.</p>
         </footer>
 
     </div>
+    
+    <div id="imageModal" class="modal">
+        <span class="modal-close" id="modalClose">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
-            // --- Theme Switcher Logic ---
+            // --- Modal Logic ---
 
-            const themeButton = document.getElementById('themeButton');
-            const header = document.getElementById('pageHeader');
-            const root = document.documentElement; // To access CSS variables
-            
-            // Get all elements that need their colors changed
-            const sectionHeadings = document.querySelectorAll('.content-section h2');
-            const statItems = document.querySelectorAll('.stat-item');
-            const statNumbers = document.querySelectorAll('.stat-number');
-            const quoteBlock = document.querySelector('blockquote');
-            const galleryImages = document.querySelectorAll('.gallery-grid img');
+            // Get the modal elements
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const closeModal = document.getElementById('modalClose');
 
-            const themes = {
-                lakers: {
-                    name: 'Lakers',
-                    bg: 'var(--lakers-purple)',
-                    text: 'var(--lakers-gold)',
-                    accent: 'var(--lakers-gold)',
-                },
-                heat: {
-                    name: 'Heat',
-                    bg: 'var(--heat-black)',
-                    text: 'var(--heat-red)',
-                    accent: 'var(--heat-red)',
-                },
-                cavs: {
-                    name: 'Cavaliers',
-                    bg: 'var(--cavs-wine)',
-                    text: 'var(--cavs-gold)',
-                    accent: 'var(--cavs-gold)',
-                }
-            };
+            // Get all gallery images
+            const galleryImages = document.querySelectorAll('.gallery-image');
 
-            let currentThemeIndex = 0;
-            const themeKeys = Object.keys(themes); // ['lakers', 'heat', 'cavs']
-
-            themeButton.addEventListener('click', () => {
-                // Move to the next theme, looping back to 0
-                currentThemeIndex = (currentThemeIndex + 1) % themeKeys.length;
-                
-                const currentThemeKey = themeKeys[currentThemeIndex];
-                const theme = themes[currentThemeKey];
-
-                // 1. Update Header
-                header.style.backgroundColor = theme.bg;
-                header.style.color = theme.text;
-                header.style.borderColor = theme.accent;
-
-                // 2. Update Button
-                themeButton.style.backgroundColor = theme.accent;
-                themeButton.style.color = theme.bg;
-                themeButton.textContent = `Switch Team Theme (${themes[themeKeys[(currentThemeIndex + 1) % themeKeys.length]].name})`;
-
-                // 3. Update Section Borders
-                sectionHeadings.forEach(h2 => h2.style.borderColor = theme.accent);
-
-                // 4. Update Stats
-                statItems.forEach(item => item.style.borderColor = theme.accent);
-                statNumbers.forEach(num => num.style.color = theme.accent);
-
-                // 5. Update Quote
-                quoteBlock.style.borderColor = theme.accent;
-
-                // 6. Update Gallery Hover (This is tricky, we'll use CSS variables)
-                // We can't directly change a :hover style, but we can change a variable it uses!
-                // Let's create a new CSS variable for the hover color
-                root.style.setProperty('--current-accent', theme.accent);
+            // Loop through all gallery images and add a click listener
+            galleryImages.forEach(img => {
+                img.addEventListener('click', () => {
+                    modal.classList.add('visible'); // Use class to show
+                    modalImg.src = img.src;
+                });
             });
 
-            // We need to slightly modify the CSS to use this new variable
-            // Create a new style element to inject this one change
-            const hoverStyle = document.createElement('style');
-            hoverStyle.innerHTML = `
-                .gallery-grid img:hover {
-                    border-color: var(--current-accent, var(--lakers-gold)); 
-                    /* Use --current-accent, or fallback to lakers-gold */
+            // Function to hide the modal
+            function hideModal() {
+                modal.classList.remove('visible');
+            }
+
+            // Add click listener to the close button
+            closeModal.addEventListener('click', hideModal);
+
+            // Add click listener to the modal background (overlay)
+            // This allows clicking "off" the image to close it
+            modal.addEventListener('click', (event) => {
+                // Only close if the click is on the modal background itself,
+                // not on the image
+                if (event.target === modal) {
+                    hideModal();
                 }
-            `;
-            document.head.appendChild(hoverStyle);
+            });
         });
     </script>
 

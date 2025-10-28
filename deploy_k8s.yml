@@ -1,0 +1,12 @@
+---
+- name: Deploy Cloud Portfolio App to AKS
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Apply Kubernetes Deployment
+      command: >
+        kubectl apply -f k8s/deployment.yaml --validate=false
+
+    - name: Apply Kubernetes Service
+      command: >
+        kubectl apply -f k8s/service.yaml --validate=false

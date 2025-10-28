@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloud-portfolio-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloud-portfolio
+  template:
+    metadata:
+      labels:
+        app: cloud-portfolio
+    spec:
+      containers:
+      - name: cloud-portfolio
+        image: shaunsunnyacr.azurecr.io/cloud-portfolio:v1
+        ports:
+        - containerPort: 8080

@@ -29,7 +29,8 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker buildx build . \
+          docker buildx build ./ \
+            -f ./Dockerfile \
             -t ${{ secrets.ACR_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ secrets.IMAGE_TAG }} \
             --push
 

@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cloud-portfolio-deployment
+  name: cloud-portfolio
 spec:
   replicas: 1
   selector:
@@ -13,7 +13,7 @@ spec:
         app: cloud-portfolio
     spec:
       containers:
-      - name: cloud-portfolio
-        image: shaunsunnyacr.azurecr.io/cloud-portfolio:v1
-        ports:
-        - containerPort: 8080
+        - name: cloud-portfolio
+          image: shaunsunny/cloud-portfolio:latest   # 👈 Docker Hub image
+          ports:
+            - containerPort: 3000

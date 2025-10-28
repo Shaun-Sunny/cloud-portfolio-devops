@@ -1,4 +1,4 @@
-name: Build and Deploy to AKS
+name: Build and Deploy to AKS (Docker Hub)
 
 on:
   push:
@@ -16,37 +16,38 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # 🐳 Log in to Docker Hub
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+      # 🧱 Build and push Docker image
+      - name: Build and push Docker image to Docker Hub
+        run: |
+          echo "Current directory: $(pwd)"
+          echo "Files in directory:"
+          ls -la
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ secrets.IMAGE_TAG }} .
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ secrets.IMAGE_TAG }}
+
+      # 🔐 Log in to Azure (to access AKS)
       - name: Log in to Azure
         uses: azure/login@v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Log in to Azure Container Registry (ACR)
-        run: az acr login --name ${{ secrets.ACR_NAME }}
-
-      - name: Set up Docker Buildx
-        run: docker buildx create --use
-
-      - name: Build and push Docker image
-        working-directory: ${{ github.workspace }}
-        run: |
-          echo "Current directory: $(pwd)"
-          echo "Files in directory:"
-          ls -la
-          docker buildx build . \
-            -f Dockerfile \
-            -t ${{ secrets.ACR_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ secrets.IMAGE_TAG }} \
-            --push
-
+      # ☸️ Get AKS credentials
       - name: Get AKS credentials
         run: az aks get-credentials --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} --name ${{ secrets.AKS_NAME }} --overwrite-existing
 
+      # 🚀 Deploy to AKS
       - name: Deploy to AKS
         run: |
+          kubectl set image deployment/cloud-portfolio cloud-portfolio=${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ secrets.IMAGE_TAG }} --record || \
           kubectl apply -f k8s/deployment.yaml
           kubectl apply -f k8s/service.yaml
 
+      # ✅ Verify Deployment
       - name: Verify Deployment
         run: |
-          kubectl get pods
-          kubectl get svc
+          kubectl get pods -o wide
+          kubectl get svc -o wide

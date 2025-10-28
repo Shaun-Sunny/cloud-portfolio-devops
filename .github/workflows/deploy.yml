@@ -28,12 +28,15 @@ jobs:
         run: docker buildx create --use
 
       - name: Build and push Docker image
+        working-directory: ${{ github.workspace }}
         run: |
+          echo "Current directory: $(pwd)"
+          echo "Files in directory:"
+          ls -la
           docker buildx build . \
             -f Dockerfile \
             -t ${{ secrets.ACR_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ secrets.IMAGE_TAG }} \
             --push
-
 
       - name: Get AKS credentials
         run: az aks get-credentials --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} --name ${{ secrets.AKS_NAME }} --overwrite-existing

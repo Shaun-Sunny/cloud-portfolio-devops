@@ -4,3 +4,10 @@ node_modules/
 .vscode/
 npm-debug.log
 
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+*.tfstate*
+node_modules/
+*.log
+.env
